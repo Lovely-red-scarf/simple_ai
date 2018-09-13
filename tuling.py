@@ -1,22 +1,27 @@
+
 import requests
 import json
-# import yuyin_test
+
 tuling_url = "http://openapi.tuling123.com/openapi/api/v2"
 data = {
-	"reqType":0,
+    # 请求的类型 0 文本 1 图片 2 音频
+    "reqType": 0,
+    # // 输入信息(必要参数)
     "perception": {
+        # 文本信息
         "inputText": {
-            "text": "阜阳颍州区市医院附近的高档酒店"
+            # 问题
+            "text": "北京未来七天，天气怎么样"
         }
     },
-
+    # 用户必要信息
     "userInfo": {
-        "apiKey": "c9fd36f40d0f4adba06ba28f79c789a6",
+        # 图灵机器人的apikey
+        "apiKey": "8fc493d348704ba4af5413e67e6fc90b",
+        # 用户唯一标识
         "userId": "zilong"
     }
-
 }
-
 
 def to_tuling(q,user_id):
     data["perception"]["inputText"]["text"] = q
@@ -27,3 +32,4 @@ def to_tuling(q,user_id):
     result = res_dic.get("results")[0].get("values").get(res_type)
 
     return result
+
